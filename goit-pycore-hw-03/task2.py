@@ -9,9 +9,9 @@ def get_numbers_ticket(min_v, max_v, qty):
         return []
     
     range_v = range(min_v, max_v + 1)
-    picked = random.sample(range_v, qty)
+    picked = random.sample(range_v, qty) 
     
-    return sorted(picked)
+    return sorted(picked)   
 
 
 print(get_numbers_ticket(1, 99, 77))
