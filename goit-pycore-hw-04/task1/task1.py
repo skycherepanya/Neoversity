@@ -1,18 +1,22 @@
 def total_salary(path):
-    with open(path, 'r') as file:
-        text = [el.strip() for el in file.readlines()]
-        total = 0
-        qty = 0
+    try:
+        with open(path, 'r') as file:
+            text = [el.strip() for el in file.readlines()]
+            total = 0
+            qty = 0
 
-        for item in text:
-            splited = item.split(',')
-            number = int(splited[1])
-            total = total + number
-            qty += 1 
+            for item in text:
+                splited = item.split(',')
+                number = int(splited[1])
+                total = total + number
+                qty += 1 
 
-        avg = total / qty
-           
-        return total, avg
+            avg = total / qty
+            
+            return total, avg
+    
+    except FileNotFoundError:
+        return "Не вдалося знайти файл."
 
 total, avg = total_salary("task1/salary_file.txt")
 print(f"Загальна сума заробітної плати: {total}, Середня заробітна плата: {avg}")
