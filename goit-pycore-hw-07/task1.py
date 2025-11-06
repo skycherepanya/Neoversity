@@ -22,7 +22,7 @@ class Phone(Field):
     
     def __init__(self, value):
         if len(value) != 10 or not value.isdigit():
-              raise ValueError
+            raise ValueError("Phone number must be 10 digits.")
         super().__init__(value) 
 
 
@@ -53,20 +53,24 @@ class Record:
 
 
     def edit_phone(self, phone_number, new_phone):
-         phone_to_edit = self.find_phone(phone_number)
-         Phone(new_phone)
-         phone_to_edit.value = new_phone
+        phone_to_edit = self.find_phone(phone_number)
+        if not phone_to_edit:
+            raise ValueError("Old phone not found.")
+        Phone(new_phone)
+        phone_to_edit.value = new_phone
 
 
     def delete_phone(self, phone_number):
-         phone_to_delete = self.find_phone(phone_number)
-         self.phones.remove(phone_to_delete)
+        phone_to_delete = self.find_phone(phone_number)
+        if not phone_to_delete:
+            raise ValueError("Phone not found.")
+        self.phones.remove(phone_to_delete)
 
 
     def find_phone(self, phone_number):
-         for looking_for in self.phones:
-              if looking_for.value == phone_number:
-                   return looking_for
+        for looking_for in self.phones:
+            if looking_for.value == phone_number:
+                return looking_for
               
     
     def add_birthday(self, birthday):
